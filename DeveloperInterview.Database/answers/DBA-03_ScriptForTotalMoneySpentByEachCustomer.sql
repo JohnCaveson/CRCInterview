@@ -1,7 +1,7 @@
-SELECT DISTINCT c.FirstName+' '+c.LastName as FullName, SUM(p.Price) as TotalSpent
+SELECT DISTINCT c.Id, c.FirstName+' '+c.LastName as FullName, SUM(p.Price) AS TotalSum
 FROM dbo.Customer c
-JOIN dbo.CustomerOrder co ON c.Id = co.CustomerId
-JOIN dbo.OrderProduct op ON co.Id = op.CustomerOrderId
-JOIN dbo.Product p on op.ProductId = p.Id
-GROUP BY c.FirstName+' '+c.LastName, p.Price
-ORDER BY TotalSpent
+LEFT JOIN dbo.CustomerOrder co ON c.Id = co.CustomerId
+LEFT JOIN dbo.OrderProduct op ON co.Id = op.CustomerOrderId
+LEFT JOIN dbo.Product p ON op.ProductId = p.Id
+GROUP BY c.Id, FirstName+' '+LastName
+ORDER BY TotalSum DESC
