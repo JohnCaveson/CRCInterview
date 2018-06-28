@@ -7,6 +7,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DeveloperInterview.Website.Models;
+using DeveloperInterview.Website.Services;
+using DeveloperInterview.Website.Services.Interfaces;
 
 namespace DeveloperInterview.Website.Controllers
 {
@@ -17,6 +19,13 @@ namespace DeveloperInterview.Website.Controllers
             var model = new HomeIndexViewModel();
             model.DatabaseSuccess = CanConnectToDb();
             return View(model);
+        }
+
+        public ActionResult Orders()
+        {
+            IOrderInterface orderRepo = new DbOrderInterface();
+            List<Order> orders = orderRepo.GetAllOrders();
+            return View(orders);
         }
 
         private static bool CanConnectToDb()
