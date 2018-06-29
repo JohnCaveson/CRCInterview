@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DeveloperInterview.Website.Models.Order>
+﻿@model IEnumerable<DeveloperInterview.Website.Models.OrderViewModel>
 
 @{
     ViewBag.Title = "Orders";
@@ -7,7 +7,7 @@
 <h2>Orders</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "CreateNewOrder")
 </p>
 <table class="table">
     <tr>
@@ -33,11 +33,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Quantity)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.OrderId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.OrderId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.OrderId })
         </td>
     </tr>
 }

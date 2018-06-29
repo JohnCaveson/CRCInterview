@@ -23,9 +23,29 @@ namespace DeveloperInterview.Website.Controllers
 
         public ActionResult Orders()
         {
-            IOrderInterface orderRepo = new DbOrderInterface();
-            List<Order> orders = orderRepo.GetAllOrders();
+            IOrderRepository orderRepo = new DbOrderRepository();
+            List<OrderViewModel> orders = orderRepo.GetAllOrders();
             return View(orders);
+        }
+
+        //TODO FIX THIS
+        public ActionResult CreateNewOrder()
+        {
+            IOrderRepository orderRepo = new DbOrderRepository();
+            List<OrderViewModel> orders = orderRepo.GetAllOrders();
+            return View(orders);
+        }
+
+        [HttpPost]
+        public ActionResult CreateNewOrder(OrderViewModel ovm)
+        {
+            if (ModelState.IsValid)
+            {
+                IOrderRepository orderRepo = new DbOrderRepository();
+                orderRepo.CreateNewOrder(ovm);
+                return RedirectToAction("Orders");
+            }
+            return View();
         }
 
         private static bool CanConnectToDb()

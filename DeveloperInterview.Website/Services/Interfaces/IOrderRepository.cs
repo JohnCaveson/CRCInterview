@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace DeveloperInterview.Website.Services.Interfaces
 {
-    public interface IOrderInterface
+    public interface IOrderRepository
     {
-        List<Order> GetAllOrders();
+        List<OrderViewModel> GetAllOrders();
+        OrderViewModel CreateNewOrder(OrderViewModel ovm);
     }
 }
