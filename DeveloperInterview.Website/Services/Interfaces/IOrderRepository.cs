@@ -10,6 +10,7 @@ namespace DeveloperInterview.Website.Services.Interfaces
     public interface IOrderRepository
     {
         List<OrderViewModel> GetAllOrders();
-        OrderViewModel CreateNewOrder(OrderViewModel ovm);
+        void CreateNewOrder(int CustomerId, int ProductId, int Quantity, int ProductRating);
+        CreateNewOrderViewModel GetData();
     }
 }

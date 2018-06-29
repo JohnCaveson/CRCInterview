@@ -7,10 +7,9 @@ namespace DeveloperInterview.Website.Models
 {
     public class CreateNewOrderViewModel
     {
-        public List<string> Names { get; set; }
-        public List<int> CustomerId { get; set; }
-        public List<int> ProductId { get; set; }
-        public List<string> MyProperty { get; set; }
-        public int Quantity { get; set; }
+        public List<Customer> Customers { get; set; }
+        public List<CustomerOrder> CustomerOrders { get; set; }
+        public List<OrderProduct> OrderProduct { get; set; }
+        public List<Product> Product { get; set; }
     }
 }

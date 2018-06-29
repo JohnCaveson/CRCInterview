@@ -20,7 +20,8 @@ namespace DeveloperInterview.Website.Controllers
             model.DatabaseSuccess = CanConnectToDb();
             return View(model);
         }
-
+        
+        //Load all orders obtained from the Interface to the page
         public ActionResult Orders()
         {
             IOrderRepository orderRepo = new DbOrderRepository();
@@ -28,25 +29,26 @@ namespace DeveloperInterview.Website.Controllers
             return View(orders);
         }
 
-        //TODO FIX THIS
+        #region Get and Post for Creating a new Order
         public ActionResult CreateNewOrder()
         {
             IOrderRepository orderRepo = new DbOrderRepository();
-            List<OrderViewModel> orders = orderRepo.GetAllOrders();
+            CreateNewOrderViewModel orders = orderRepo.GetData();
             return View(orders);
         }
 
         [HttpPost]
-        public ActionResult CreateNewOrder(OrderViewModel ovm)
+        public ActionResult CreateNewOrder(int CustomerId, int ProductId, int Quantity, int ProductRating)
         {
             if (ModelState.IsValid)
             {
                 IOrderRepository orderRepo = new DbOrderRepository();
-                orderRepo.CreateNewOrder(ovm);
+                orderRepo.CreateNewOrder(CustomerId, ProductId, Quantity, ProductRating);
                 return RedirectToAction("Orders");
             }
             return View();
         }
+        #endregion
 
         private static bool CanConnectToDb()
         {
